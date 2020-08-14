@@ -2,11 +2,19 @@ const fs = require('fs');
 const obj = require('./server/second')
 const express=require("express");
 const app = express();
+const path=require('path');
 
+app.use(express.static(path.join(__dirname,"client/styles")))
+app.use(express.static(path.join(__dirname,"client/scripts")))  //configuring paths of static resources
 
 app.get("/",function(request,response){
 
     response.send("Node JS server is running...!!!")
+})
+
+app.get("/home",function(request,response){
+   
+    response.sendFile(path.join(__dirname,"client/index.html"));
 })
 
 app.listen("4800",function(){

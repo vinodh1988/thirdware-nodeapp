@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.5.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   },
   "devDependencies": {
     "enzyme": "^3.11.0"
