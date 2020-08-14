@@ -6,6 +6,8 @@ const path=require('path');
 
 app.use(express.static(path.join(__dirname,"client/styles")))
 app.use(express.static(path.join(__dirname,"client/scripts")))  //configuring paths of static resources
+app.use(express.static(path.join(__dirname,"node_modules/bootstrap/dist")))
+app.use(express.static(path.join(__dirname,"node_modules/jquery/dist")))
 
 app.get("/",function(request,response){
 
@@ -20,3 +22,4 @@ app.get("/home",function(request,response){
 app.listen("4800",function(){
     console.log("Server started with port number 4800")
 })
+
