@@ -3,11 +3,14 @@ const obj = require('./server/second')
 const express=require("express");
 const app = express();
 const path=require('path');
+const peopleroutes = require('./server/routes/people/people')
 
 app.use(express.static(path.join(__dirname,"client/styles")))
 app.use(express.static(path.join(__dirname,"client/scripts")))  //configuring paths of static resources
 app.use(express.static(path.join(__dirname,"node_modules/bootstrap/dist")))
 app.use(express.static(path.join(__dirname,"node_modules/jquery/dist")))
+
+app.use('/people',peopleroutes);
 
 app.get("/",function(request,response){
 
