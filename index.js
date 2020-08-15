@@ -1,5 +1,4 @@
-const fs = require('fs');
-const obj = require('./server/second')
+var handlebars=require('express-handlebars');
 const express=require("express");
 const app = express();
 const path=require('path');
@@ -13,6 +12,15 @@ app.use(express.static(path.join(__dirname,"node_modules/bootstrap/dist")))
 app.use(express.static(path.join(__dirname,"node_modules/jquery/dist")))
 
 app.use(bodyParser.urlencoded());  // to parse request with urlencoded data
+
+  app.engine('handlebars', handlebars({
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, '/client/templates/layouts')
+  }));
+
+
+  app.set('views', path.join(__dirname, 'client/templates'));
+  app.set('view engine', 'handlebars');
 
 app.use('/people',peopleroutes);
 
