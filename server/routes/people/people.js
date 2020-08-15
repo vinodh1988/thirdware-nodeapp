@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const db = require('../../db/connection')
+const db = require('../../db/connection');
+const Department = require('../../model/departments');
 
 router.post("/add",function(request,response){
     console.log(request.body);
@@ -19,6 +20,12 @@ router.get("/report",function(request,response){
      )
 })
 
+router.get("/departments",function(request,response){
+     Department.query().eager('employees').then(
+         (data)=>response.json(data),
+         ()=>response.json([])
+     )
+})
 
 
 
