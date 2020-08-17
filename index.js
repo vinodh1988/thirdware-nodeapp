@@ -3,6 +3,7 @@ const express=require("express");
 const app = express();
 const path=require('path');
 const peopleroutes = require('./server/routes/people/people')
+const orgroutes = require('./server/routes/people/org')
 const bodyParser = require("body-parser"); //reads request data and decodes it
 
 
@@ -12,6 +13,7 @@ app.use(express.static(path.join(__dirname,"node_modules/bootstrap/dist")))
 app.use(express.static(path.join(__dirname,"node_modules/jquery/dist")))
 
 app.use(bodyParser.urlencoded());  // to parse request with urlencoded data
+app.use(bodyParser.json()); //to parser JSON data
 
   app.engine('handlebars', handlebars({
     defaultLayout: 'main',
@@ -23,6 +25,7 @@ app.use(bodyParser.urlencoded());  // to parse request with urlencoded data
   app.set('view engine', 'handlebars');
 
 app.use('/people',peopleroutes);
+app.use('/api',orgroutes);
 
 
 app.get("/",function(request,response){

@@ -20,13 +20,6 @@ router.get("/report",function(request,response){
      )
 })
 
-router.get("/departments",function(request,response){
-     Department.query().eager('employees').then(
-         (data)=>response.json(data),
-         ()=>response.json([])
-     )
-})
-
 
 
 module.exports =router;
