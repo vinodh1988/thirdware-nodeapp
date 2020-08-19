@@ -2,9 +2,27 @@ var handlebars=require('express-handlebars');
 const express=require("express");
 const app = express();
 const path=require('path');
+
 const peopleroutes = require('./server/routes/people/people')
 const orgroutes = require('./server/routes/people/org')
+const apiroutes = require('./server/routes/api/api')
+
 const bodyParser = require("body-parser"); //reads request data and decodes it
+var cors = require('cors')
+
+var mongoose = require('mongoose');
+mongoose.set('debug', true);
+mongoose.connect('mongodb://localhost/thirdware');
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function() {
+  console.log("mongo db connection is open");
+});
+
+
+app.use(cors())
 
 
 app.use(express.static(path.join(__dirname,"client/styles")))
@@ -25,7 +43,8 @@ app.use(bodyParser.json()); //to parser JSON data
   app.set('view engine', 'handlebars');
 
 app.use('/people',peopleroutes);
-app.use('/api',orgroutes);
+app.use('/objective-api',orgroutes);
+app.use('/api',apiroutes)
 
 
 app.get("/",function(request,response){

@@ -20,6 +20,12 @@ router.get("/report",function(request,response){
      )
 })
 
+router.get("/",function(request,response){
+    let data =[{id:1,name: "Raj", position: "President"},
+    {id:2,name: "Ramesh", position: "Chief people officer"},
+    {id:3,name: "Gajendran", position: "Chief Executive officer"}]
+    response.json({people: data})
+})
 
 
 module.exports =router;
