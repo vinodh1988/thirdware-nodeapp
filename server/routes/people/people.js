@@ -27,5 +27,10 @@ router.get("/",function(request,response){
     response.json({people: data})
 })
 
+router.post("/",function(request,response){
+    console.log(request.body)
+    response.json({"person": {id: Math.round(Math.random()*1000),status : "success"}})
+})
+
 
 module.exports =router;

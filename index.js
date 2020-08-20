@@ -57,6 +57,12 @@ app.get("/home",function(request,response){
     response.sendFile(path.join(__dirname,"client/index.html"));
 })
 
+app.get("/images/:imagename",function(request,response) {
+
+    console.log(request.params.imagename)
+    response.sendFile(path.join(__dirname,"static-files/images/"+request.params.imagename))
+});
+
 app.listen("4800",function(){
     console.log("Server started with port number 4800")
 })
